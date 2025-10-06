@@ -9,16 +9,20 @@ public class LevelManager : MonoBehaviour
     public Transform startPoint;
     public Transform[] path;
 
+
+    [Header("UI Elements")]
     [SerializeField] private GameObject gameWinImage;
     [SerializeField] private GameObject gameLoseImage;
     [SerializeField] private TextMeshProUGUI currencyUI;
 
+    [Header("Animations")]
     [SerializeField] private Animator firstStarAnim;
     [SerializeField] private Animator secondStarAnim;
     [SerializeField] private Animator thirdStarAnim;
 
-    public int playerHealth = 5;
+    [SerializeField] private int levelReward = 100;
 
+    public int playerHealth = 5;
     public int currency;
 
     private void Awake()
@@ -82,6 +86,8 @@ public class LevelManager : MonoBehaviour
         {
             firstStarAnim.SetBool("isGet", true);
         }
+
+        MoneyManager.instance.AddMoney(levelReward);
     }
 
     public void LoseLevel()

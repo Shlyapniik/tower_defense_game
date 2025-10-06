@@ -5,14 +5,26 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject levelPanel;
+    [SerializeField] private GameObject startPanel;
+    [SerializeField] private GameObject shopPanel;
+
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject exitButton;
+    [SerializeField] private GameObject shopButton;
+    [SerializeField] private GameObject towersButton;
+    [SerializeField] private GameObject settingsButton;
+    
 
-    public void LoadLevelPanel(string sceneName)
+    public void LoadShopPanel()
+    {
+        shopPanel.SetActive(true);
+        startPanel.SetActive(false);
+    }
+
+    public void LoadLevelPanel()
     {
         levelPanel.SetActive(true);
-        playButton.SetActive(false);
-        exitButton.SetActive(false);
+        startPanel.SetActive(false);
     }
 
     public void LoadLevel(string sceneName)
@@ -23,8 +35,8 @@ public class MenuManager : MonoBehaviour
     public void BackToMainMenu()
     {
         levelPanel.SetActive(false);
-        playButton.SetActive(true);
-        exitButton.SetActive(true);
+        shopPanel.SetActive(false);
+        startPanel.SetActive(true);
     }
 
     public void ExitGame()
