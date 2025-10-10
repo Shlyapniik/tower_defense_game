@@ -20,6 +20,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private List<ChestUI> chestsUI;
     [SerializeField] private Transform rewardPopupParent;
 
+    [SerializeField] private string[] towerIds = { "ArrowTower", "IceTower", "FireTower", "LightTower" };
+
     private void Start()
     {
         foreach (var chest in chestsUI)
@@ -27,6 +29,8 @@ public class ShopManager : MonoBehaviour
             chest.icon.sprite = chest.data.icon;
             chest.nameText.text = chest.data.chestName;
             chest.costText.text = chest.data.price.ToString();
+
+            chest.buyButton.onClick.RemoveAllListeners();
             chest.buyButton.onClick.AddListener(() => BuyChest(chest.data));
         }
     }
@@ -43,8 +47,7 @@ public class ShopManager : MonoBehaviour
 
     private void OpenChest(ChestData data)
     {
-        int count = Random.Range(data.minShards, data.maxShards+1);
-        List<string> rewards = new List<string>();
+        int count = Random.Range(data.minShards, data.maxShards + 1);
 
         for(int i = 0; i < count; i++)
         {
@@ -54,18 +57,16 @@ public class ShopManager : MonoBehaviour
             if (roll <= data.epicChance) rarity = "Epic";
             else if (roll <= data.rareChance + data.epicChance) rarity = "Rare";
 
-            rewards.Add(rarity);
+            string randomTower = towerIds[Random.Range(0, towerIds.Length)];
+
+            ShardInventory.Instance.AddShard(randomTower, rarity, 1);
         }
 
-        ShowRewardsUI(data,rewards);
+        ShowRewardsUI(data);
     }
 
-    private void ShowRewardsUI(ChestData data, List<string> rewards)
+    private void ShowRewardsUI(ChestData data)
     {
-        Debug.Log($"Open {data.chestName} chest!");
-        foreach (var r in rewards)
-        {
-            Debug.Log($"You gained shard: {r}");
-        }
+        
     }
 }

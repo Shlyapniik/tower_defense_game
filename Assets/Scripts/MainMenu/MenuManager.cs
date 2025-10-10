@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject levelPanel;
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject shopPanel;
+    [SerializeField] private GameObject towersPanel;
 
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject exitButton;
@@ -27,6 +28,12 @@ public class MenuManager : MonoBehaviour
         startPanel.SetActive(false);
     }
 
+    public void LoadTowersPanel()
+    {
+        towersPanel.SetActive(true);
+        startPanel.SetActive(false);
+    }
+
     public void LoadLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -36,6 +43,7 @@ public class MenuManager : MonoBehaviour
     {
         levelPanel.SetActive(false);
         shopPanel.SetActive(false);
+        towersPanel.SetActive(false);
         startPanel.SetActive(true);
     }
 

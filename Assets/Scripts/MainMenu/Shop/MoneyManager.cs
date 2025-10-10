@@ -5,7 +5,7 @@ public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager instance;
 
-    private int money;
+    private int money = 250;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class MoneyManager : MonoBehaviour
 
     private void LoadMoney()
     {
-        money = PlayerPrefs.GetInt("money", 0);
+        money = 250;//PlayerPrefs.GetInt("money", 0);
     }
 
     public int GetMoney()
@@ -44,7 +44,7 @@ public class MoneyManager : MonoBehaviour
 
     public bool SpendMoney(int amount)
     {
-        if (money > amount)
+        if (money >= amount)
         {
             money -= amount;
             SaveMoney();
