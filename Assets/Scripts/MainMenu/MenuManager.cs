@@ -14,7 +14,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject shopButton;
     [SerializeField] private GameObject towersButton;
     [SerializeField] private GameObject settingsButton;
-    
+
+
+    private void Awake()
+    {
+        BackToMainMenu();
+    }
 
     public void LoadShopPanel()
     {

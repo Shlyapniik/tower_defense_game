@@ -4046,6 +4046,7 @@ MonoBehaviour:
   firstStarAnim: {fileID: 222526461}
   secondStarAnim: {fileID: 2097469952}
   thirdStarAnim: {fileID: 2101649448}
+  levelReward: 150
   playerHealth: 5
   currency: 300
 --- !u!4 &1149181033
